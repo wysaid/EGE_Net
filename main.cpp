@@ -5,6 +5,19 @@
 
 using namespace std;
 
+// 文本本地化宏定义
+#ifdef _MSC_VER
+// MSVC编译器使用中文文案
+#define TEXT_WINDOW_TITLE       "EGE网格 By wysaid"
+#define TEXT_INTENSITY_FORMAT   "当前网格强度：%g"
+#define TEXT_INSTRUCTIONS       "按'+'或者'-'可以增大或者减小网格弹力！这个版本由wysaid制作， 参见: http://blog.wysaid.org"
+#else
+// 非MSVC编译器使用英文文案
+#define TEXT_WINDOW_TITLE       "EGE Grid Demo By wysaid"
+#define TEXT_INTENSITY_FORMAT   "Current Grid Intensity: %g"
+#define TEXT_INSTRUCTIONS       "Press '+' or '-' to increase or decrease grid elasticity. Original version by wysaid. See: http://blog.wysaid.org"
+#endif
+
 struct Point
 {
 	Point() : x(0), y(0), dx(0), dy(0) {}
@@ -181,11 +194,11 @@ private:
 int main()
 {
 	initgraph(800, 600, INIT_RENDERMANUAL);
-	setcaption("EGE网格 By wysaid");
+	setcaption(TEXT_WINDOW_TITLE);
 	Net net;
 	char buffer[1024];
 
-	sprintf(buffer, "当前网格强度：%g", net.getIntensity());
+	sprintf(buffer, TEXT_INTENSITY_FORMAT, net.getIntensity());
 
 	net.initNet(80, 60);
 
@@ -215,14 +228,14 @@ int main()
 				exit(0);
 			}
 			flushkey();
-			sprintf(buffer, "当前网格强度：%g", net.getIntensity());
+			sprintf(buffer, TEXT_INTENSITY_FORMAT, net.getIntensity());
 		}
 
 		setcolor(GREEN);
 		net.drawNet(800, 600);
 		net.update();
 		setcolor(0x00ff0000);
-		outtextxy(10, 10, "按'+'或者'-'可以增大或者减小网格弹力！这个版本由wysaid制作， 参见: http://blog.wysaid.org");
+		outtextxy(10, 10, TEXT_INSTRUCTIONS);
 		outtextxy(10, 30, buffer);
 	}
 
