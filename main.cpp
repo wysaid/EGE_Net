@@ -80,7 +80,7 @@ public:
 				dx += (m_vec[m_index][h - m_width].x + m_vec[m_index][h + m_width].x - m_vec[m_index][h].x * 2.0f);
 				dy += (m_vec[m_index][h - m_width].y + m_vec[m_index][h + m_width].y - m_vec[m_index][h].y * 2.0f);
 
-				//Ä£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶È·ï¿½ï¿½ï¿½ï¿½à·´Ê±ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½ï¿½
+				//Ä£ÄâÄÜÁ¿ËğÊ§£¬ µ±¼ÓËÙ¶È·½ÏòÓëËÙ¶È·½ÏòÏà·´Ê±£¬¼Ó¿ì¼õËÙ
 				if(((unsigned&)dx >> 31) != ((unsigned&)m_vec[m_index][h].dx >> 31))
 					dx *= 1.0f + m_intensity;
 				

@@ -214,3 +214,6 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 *.db
+
+# CodeQL
+_codeql_detected_source_root
