@@ -67,7 +67,7 @@ public:
 				dx += (m_vec[m_index][h - m_width].x + m_vec[m_index][h + m_width].x - m_vec[m_index][h].x * 2.0f);
 				dy += (m_vec[m_index][h - m_width].y + m_vec[m_index][h + m_width].y - m_vec[m_index][h].y * 2.0f);
 
-				//Ä£ÄâÄÜÁ¿ËğÊ§£¬ µ±¼ÓËÙ¶È·½ÏòÓëËÙ¶È·½ÏòÏà·´Ê±£¬¼Ó¿ì¼õËÙ
+				//æ¨¡æ‹Ÿèƒ½é‡æŸå¤±ï¼Œ å½“åŠ é€Ÿåº¦æ–¹å‘ä¸é€Ÿåº¦æ–¹å‘ç›¸åæ—¶ï¼ŒåŠ å¿«å‡é€Ÿ
 				if(((unsigned&)dx >> 31) != ((unsigned&)m_vec[m_index][h].dx >> 31))
 					dx *= 1.0f + m_intensity;
 				
@@ -181,11 +181,11 @@ private:
 int main()
 {
 	initgraph(800, 600, INIT_RENDERMANUAL);
-	setcaption("EGEÍø¸ñ By wysaid");
+	setcaption("EGEç½‘æ ¼ By wysaid");
 	Net net;
 	char buffer[1024];
 
-	sprintf(buffer, "µ±Ç°Íø¸ñÇ¿¶È£º%g", net.getIntensity());
+	sprintf(buffer, "å½“å‰ç½‘æ ¼å¼ºåº¦ï¼š%g", net.getIntensity());
 
 	net.initNet(80, 60);
 
@@ -215,14 +215,14 @@ int main()
 				exit(0);
 			}
 			flushkey();
-			sprintf(buffer, "µ±Ç°Íø¸ñÇ¿¶È£º%g", net.getIntensity());
+			sprintf(buffer, "å½“å‰ç½‘æ ¼å¼ºåº¦ï¼š%g", net.getIntensity());
 		}
 
 		setcolor(GREEN);
 		net.drawNet(800, 600);
 		net.update();
 		setcolor(0x00ff0000);
-		outtextxy(10, 10, "°´'+'»òÕß'-'¿ÉÒÔÔö´ó»òÕß¼õĞ¡Íø¸ñµ¯Á¦£¡Õâ¸ö°æ±¾ÓÉwysaidÖÆ×÷£¬ ²Î¼û: http://blog.wysaid.org");
+		outtextxy(10, 10, "æŒ‰'+'æˆ–è€…'-'å¯ä»¥å¢å¤§æˆ–è€…å‡å°ç½‘æ ¼å¼¹åŠ›ï¼è¿™ä¸ªç‰ˆæœ¬ç”±wysaidåˆ¶ä½œï¼Œ å‚è§: http://blog.wysaid.org");
 		outtextxy(10, 30, buffer);
 	}
 
