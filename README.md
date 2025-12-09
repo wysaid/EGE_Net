@@ -79,6 +79,11 @@ EGE (Easy Graphics Engine) 是一个简单易用的 C++ 图形库，专为图形
 g++ -o EGE_Net.exe main.cpp -I<EGE_include_path> -L<EGE_lib_path> -lgraphics64 -lgdi32 -limm32 -lmsimg32 -lole32 -loleaut32 -lwinmm -luuid
 ```
 
+**注意：** 请将 `<EGE_include_path>` 和 `<EGE_lib_path>` 替换为实际的 EGE 库路径。例如：
+```bash
+g++ -o EGE_Net.exe main.cpp -IC:\EGE\include -LC:\EGE\lib -lgraphics64 -lgdi32 -limm32 -lmsimg32 -lole32 -loleaut32 -lwinmm -luuid
+```
+
 ## 使用说明
 
 ### 运行程序
