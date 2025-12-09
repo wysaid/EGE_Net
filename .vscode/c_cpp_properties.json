@@ -54,9 +54,11 @@
             "compilerArgs": [
                 "/Zc:__cplusplus"
             ],
-            "includePath": [
-                "${myDefaultIncludePath}",
+            "defines": [
                 "SHOW_CONSOLE=1"
+            ],
+            "includePath": [
+                "${myDefaultIncludePath}"
             ],
             "configurationProvider": "ms-vscode.cmake-tools"
         }
