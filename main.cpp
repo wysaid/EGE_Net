@@ -5,19 +5,6 @@
 
 using namespace std;
 
-// æ–‡æœ¬æœ¬åœ°åŒ–å®å®šä¹‰
-#ifdef _MSC_VER
-// MSVCç¼–è¯‘å™¨ä½¿ç”¨ä¸­æ–‡æ–‡æ¡ˆ
-#define TEXT_WINDOW_TITLE       "EGEç½‘æ ¼ By wysaid"
-#define TEXT_INTENSITY_FORMAT   "å½“å‰å¼¹æ€§å¼ºåº¦ï¼š%g"
-#define TEXT_INSTRUCTIONS       "æŒ‰'+'æˆ–è€…'-'æ¥å¢åŠ æˆ–å‡å°ç½‘æ ¼çš„å¼¹æ€§ã€‚æœ¬ç¨‹åºåŸç‰ˆç”±wysaidç‹¬ç«‹ç¼–å†™ å‚è§: http://blog.wysaid.org"
-#else
-// éMSVCç¼–è¯‘å™¨ä½¿ç”¨è‹±æ–‡æ–‡æ¡ˆ
-#define TEXT_WINDOW_TITLE       "EGE Grid Demo By wysaid"
-#define TEXT_INTENSITY_FORMAT   "Current Elasticity: %g"
-#define TEXT_INSTRUCTIONS       "Press '+' or '-' to increase or decrease grid elasticity. Original version by wysaid. See: http://blog.wysaid.org"
-#endif
-
 struct Point
 {
 	Point() : x(0), y(0), dx(0), dy(0) {}
@@ -194,11 +181,11 @@ private:
 int main()
 {
 	initgraph(800, 600, INIT_RENDERMANUAL);
-	setcaption(TEXT_WINDOW_TITLE);
+	setcaption("EGEÍø¸ñ By wysaid");
 	Net net;
 	char buffer[1024];
 
-	sprintf(buffer, TEXT_INTENSITY_FORMAT, net.getIntensity());
+	sprintf(buffer, "µ±Ç°Íø¸ñÇ¿¶È£º%g", net.getIntensity());
 
 	net.initNet(80, 60);
 
@@ -228,14 +215,14 @@ int main()
 				exit(0);
 			}
 			flushkey();
-			sprintf(buffer, TEXT_INTENSITY_FORMAT, net.getIntensity());
+			sprintf(buffer, "µ±Ç°Íø¸ñÇ¿¶È£º%g", net.getIntensity());
 		}
 
 		setcolor(GREEN);
 		net.drawNet(800, 600);
 		net.update();
 		setcolor(0x00ff0000);
-		outtextxy(10, 10, TEXT_INSTRUCTIONS);
+		outtextxy(10, 10, "°´'+'»òÕß'-'¿ÉÒÔÔö´ó»òÕß¼õĞ¡Íø¸ñµ¯Á¦£¡Õâ¸ö°æ±¾ÓÉwysaidÖÆ×÷£¬ ²Î¼û: http://blog.wysaid.org");
 		outtextxy(10, 30, buffer);
 	}
 
