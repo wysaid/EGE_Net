@@ -6,13 +6,16 @@
 
 本项目是一个简单而有趣的图形编程示例，实现了网格的弹性物理模拟。用户可以通过鼠标与网格进行交互，观察网格在外力作用下的变形和恢复过程。这个项目对于学习图形编程、物理模拟以及交互式应用开发的开发者很有参考价值。
 
-**特点：**
-- 实时物理模拟的弹性网格
-- 流畅的鼠标交互
-- 可调节的弹性强度参数
-- 清晰的代码结构，易于理解和学习
+**核心特点：**
 
-**代码质量：** 本版本由 wysaid 依据网格变形的物理原理独立编写而成，未借用原版代码，因此思路较为清晰，可读性强，适合作为学习资料。
+- 🎮 实时物理模拟的弹性网格
+- 🖱️ 流畅的鼠标交互体验
+- ⚙️ 可实时调节的弹性强度参数
+- 📚 清晰的代码结构，易于理解和学习
+- 🔧 现代化的 CMake 构建系统
+- 🌍 跨平台编译支持（MSVC、MinGW、GCC）
+
+**代码质量：** 本版本由 wysaid 依据网格变形的物理原理独立编写而成，未借用原版代码，思路清晰，可读性强，是学习实时物理模拟的优秀参考资料。
 
 ## 依赖库
 
@@ -23,6 +26,7 @@
 EGE (Easy Graphics Engine) 是一个简单易用的 C++ 图形库，专为图形编程初学者设计。它提供了类似 Turbo C 的 BGI 图形库的简单接口，但功能更强大，支持现代 Windows 系统。
 
 **EGE 的主要特性：**
+
 - 简单易学的 API 接口
 - 支持基本图形绘制（点、线、矩形、圆等）
 - 支持图像处理和显示
@@ -30,80 +34,93 @@ EGE (Easy Graphics Engine) 是一个简单易用的 C++ 图形库，专为图形
 - 跨编译器支持（MSVC、MinGW 等）
 - 活跃的社区支持
 
-**EGE 项目地址：** https://github.com/x-ege/xege
+**项目已集成 EGE 库文件，无需额外下载。**
 
-**EGE 官方文档：** https://xege.org/
+**相关链接：**
+
+- EGE 项目地址：<https://github.com/x-ege/xege>
+- EGE 官方文档：<https://xege.org/>
+- 库版本：v25.11 及以上
 
 ## 环境要求
 
-- Windows 操作系统
-- C++ 编译器（支持 C++11 或更高版本）
+- **操作系统：** Windows（7 及以上版本）
+- **编译工具：** 以下任选一种
   - Visual Studio 2015 或更高版本（推荐）
   - MinGW-w64
-  - 其他支持 Windows 的 C++ 编译器
-- EGE 图形库
+  - GCC/Clang with MinGW 工具链
+- **C++ 标准：** C++11 或更高版本
+- **依赖库：** EGE 图形库（已包含在项目中）
 
-## 安装配置
+## 快速开始
 
-### 1. 安装 EGE 图形库
+### 前置要求
 
-#### Visual Studio 用户
+本项目采用 **CMake** 构建系统，支持多种编译器。项目已整合 EGE 库文件，无需单独下载和配置。
 
-1. 从 [EGE 发布页面](https://github.com/x-ege/xege/releases) 下载最新版本的 EGE 库
-2. 解压到任意目录（如 `C:\EGE`）
-3. 在 Visual Studio 项目中配置：
-   - 在项目属性中添加头文件目录：`C:\EGE\include`
-   - 在项目属性中添加库文件目录：`C:\EGE\lib`
-   - 在链接器输入中添加：`graphics.lib`
+### 编译方式
 
-#### MinGW 用户
+#### 方式一：使用 VS Code（推荐）
 
-1. 下载 EGE 源代码或预编译包
-2. 配置编译器的 include 和 lib 路径
-3. 链接 `graphics.a` 和必要的系统库
+1. 安装 VS Code 和 [CMake Tools 扩展](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools)
+2. 打开本项目文件夹
+3. 选择底部工具栏的编译工具集（如 Visual Studio 2022）
+4. 点击 `生成` 按钮，或按 `Ctrl+Shift+B` 快速构建
 
-详细安装说明请参考 [EGE 官方文档](https://xege.org/)。
+#### 方式二：使用 Visual Studio
 
-### 2. 编译本项目
+1. 安装 Visual Studio 2015 或更高版本（需要 C++ 开发工具）
+2. 用 Visual Studio 直接打开项目文件夹（`文件 → 打开 → 文件夹`）
+3. Visual Studio 会自动识别并配置 CMake 项目
+4. 在顶部菜单选择 `生成 → 生成全部` 进行编译
 
-#### 使用 Visual Studio
+#### 方式三：使用命令行
 
-1. 打开 `EGE_Net.sln` 解决方案文件
-2. 确保已正确配置 EGE 库路径
-3. 点击"生成解决方案"进行编译
-4. 运行生成的 `EGE_Net.exe`
+```powershell
+# 进入项目目录
+cd EGE_Net
 
-#### 使用命令行编译（以 g++ 为例）
+# 创建并进入构建目录
+mkdir build
+cd build
 
-```bash
-g++ -o EGE_Net.exe main.cpp -I<EGE_include_path> -L<EGE_lib_path> -lgraphics64 -lgdi32 -limm32 -lmsimg32 -lole32 -loleaut32 -lwinmm -luuid
+# 生成构建文件（使用默认编译器）
+cmake ..
+
+# 执行编译
+cmake --build . --parallel 4
 ```
 
-**注意：** 请将 `<EGE_include_path>` 和 `<EGE_lib_path>` 替换为实际的 EGE 库路径。例如：
-```bash
-g++ -o EGE_Net.exe main.cpp -IC:\EGE\include -LC:\EGE\lib -lgraphics64 -lgdi32 -limm32 -lmsimg32 -lole32 -loleaut32 -lwinmm -luuid
-```
+**对于 MinGW 用户：**
 
-## 使用说明
+```powershell
+cmake .. -G "MinGW Makefiles"
+cmake --build . --parallel 4
+```
 
 ### 运行程序
 
-双击 `EGE_Net.exe` 运行程序，或在命令行中执行：
+构建成功后，可执行文件位于：
 
-```bash
-./EGE_Net.exe
+- **Debug 版本：** `build/Debug/ege-demo.exe`
+- **Release 版本：** `build/Release/ege-demo.exe`
+
+双击运行或在命令行执行：
+
+```powershell
+./build/Debug/ege-demo.exe
 ```
 
 ### 操作方法
 
-- **鼠标左键拖拽**：点击并拖拽网格上的任意位置，可以拉扯网格观察变形效果
-- **+ 键**：增加网格的弹性强度
-- **- 键**：减小网格的弹性强度
-- **ESC 键**：退出程序
+- **🖱️ 鼠标左键拖拽**：点击并拖拽网格上的任意位置，可以拉扯网格观察变形效果
+- **➕ `+` 键**：增加网格的弹性强度，网格变得更"硬"
+- **➖ `-` 键**：减小网格的弹性强度，网格变得更"软"
+- **🚪 `ESC` 键**：退出程序
 
 ### 效果展示
 
-![程序运行截图](https://raw.github.com/wysaid/EGE_Net/master/shortcut.jpg)
+![程序运行截图](shortcut.png)
 
 ## 技术实现
 
@@ -118,67 +135,141 @@ g++ -o EGE_Net.exe main.cpp -IC:\EGE\include -LC:\EGE\lib -lgraphics64 -lgdi32 -
 
 ### 代码结构
 
-- `Point` 结构体：存储网格点的位置和速度
-- `Net` 类：实现网格的初始化、更新、绘制和交互
-- `main` 函数：初始化图形窗口，处理主循环和用户输入
+- `Point` 结构体：存储网格点的位置 (x, y) 和速度 (dx, dy)
+- `Net` 类：实现网格的初始化、物理更新、渲染绘制和交互处理
+- `main()` 函数：初始化图形窗口，处理主事件循环和用户输入
 
-### 跨编译器支持
+### 多编译器支持
 
-本项目使用预处理宏实现了文本的多语言支持：
-- MSVC 编译器下显示中文界面
-- 其他编译器（如 MinGW）下显示英文界面
+本项目采用 CMake 构建系统，实现了多编译器的自动适配：
 
-这样可以避免在不同编译器环境下的中文乱码问题。
+**MSVC 编译器（Visual Studio）：**
 
-**重要说明：** 源代码文件使用 UTF-8 编码，Visual Studio 项目已配置 `/utf-8` 编译选项。如果使用其他编译器，请确保：
-1. 源文件以 UTF-8 编码保存
-2. 编译时添加 UTF-8 支持选项（如 GCC/Clang 使用 `-finput-charset=UTF-8 -fexec-charset=GBK`）
+- 自动识别 VS 版本（2010, 2015, 2017, 2019, 2022, 2026）
+- 自动选择对应版本的预编译库
+- 支持 UTF-8 源文件编码
+- 启用多线程编译（/MP）加速构建
+
+**GCC/MinGW 编译器：**
+
+- 支持跨编译环境（Linux 编译 Windows 程序）
+- 支持 macOS 平台编译
+- 自动链接必要的 Windows API 库
+- 使用静态链接减少依赖
+
+**编码支持：**
+
+- MSVC 环境下显示中文界面
+- MinGW 环境下显示英文界面（避免编码问题）
+- 源代码以 UTF-8 编码保存
 
 ## 项目结构
 
-```
+```text
 EGE_Net/
-├── main.cpp              # 主程序源代码
-├── README.md             # 项目说明文档（本文件）
-├── EGE_Net.sln           # Visual Studio 解决方案文件
-├── EGE_Net.vcxproj       # Visual Studio 项目文件
-└── shortcut.jpg          # 程序运行截图
+├── CMakeLists.txt           # CMake 构建配置文件（支持多编译器）
+├── main.cpp                 # 主程序源代码
+├── README.md                # 项目说明文档（本文件）
+├── .vscode/                 # VS Code 配置文件
+│   ├── c_cpp_properties.json
+│   ├── launch.json          # 调试配置
+│   ├── settings.json
+│   └── tasks.json           # 构建任务定义
+├── build/                   # 构建目录（CMake 生成）
+│   ├── Debug/
+│   ├── Release/
+│   └── ...
+├── ege/
+│   ├── include/             # EGE 头文件
+│   │   ├── ege.h
+│   │   ├── graphics.h
+│   │   └── ege/             # 子模块头文件
+│   └── lib/                 # EGE 预编译库
+│       ├── vs2015/          # Visual Studio 2015
+│       ├── vs2017/          # Visual Studio 2017
+│       ├── vs2019/          # Visual Studio 2019
+│       ├── vs2022/          # Visual Studio 2022
+│       ├── vs2026/          # Visual Studio 2026
+│       ├── mingw64/         # MinGW-w64 (Windows)
+│       ├── mingw-w64-debian/# MinGW-w64 (Debian)
+│       └── macOS/           # macOS 支持
+└── shortcut.png             # 程序运行截图
 ```
+
+**关键改进：**
+
+- ✅ **现代化构建：** 从 Visual Studio 项目文件升级到 CMake，支持跨平台编译
+- ✅ **编译器自动识别：** 根据 MSVC 版本自动选择兼容的库文件
+- ✅ **统一构建体验：** VS Code 和 Visual Studio 均提供一致的构建流程
+- ✅ **调试配置：** 集成 VS Code 调试配置，支持快速设置断点和单步调试
 
 ## 学习建议
 
 如果你是图形编程初学者，建议按以下顺序学习：
 
-1. **熟悉 EGE 基础**：先学习 EGE 的基本绘图函数（点、线、图形等）
-2. **理解网格结构**：查看 `Point` 和 `Net` 类的定义，理解网格数据的组织方式
-3. **研究物理模拟**：重点阅读 `update()` 函数，理解弹性力的计算方法
-4. **学习交互处理**：查看 `catchPoint()` 和鼠标事件处理代码
-5. **尝试修改参数**：修改网格密度、弹性系数等参数，观察不同效果
+1. **熟悉项目构建**：理解 CMake 构建系统的工作原理，学会使用现代构建工具
+2. **理解网格结构**：查看 `Point` 结构体和 `Net` 类的定义，理解网格数据的组织方式
+3. **研究物理模拟**：重点阅读 `Net::update()` 函数，理解：
+   - 如何计算相邻点之间的弹性力
+   - 如何利用速度和加速度更新点的位置
+   - 如何实现阻尼效果
+4. **学习交互处理**：查看 `Net::catchPoint()` 函数和鼠标事件处理代码
+5. **尝试参数调整**：修改网格密度、弹性系数、阻尼系数等参数，观察不同效果
+6. **性能优化**：学习如何使用并行编译加速构建，理解 Release 版本的优化选项
 
 ## 扩展建议
 
-你可以尝试以下扩展来提升项目：
+你可以尝试以下扩展来提升项目功能：
 
-- 添加多种网格变形模式
-- 实现网格的纹理映射
-- 添加更多物理效果（重力、风力等）
-- 支持保存和加载网格状态
-- 添加动画录制功能
+- 📊 添加多种网格变形模式（如径向扭曲、波浪形变）
+- 🎨 实现网格的纹理映射和颜色渐变
+- 🌀 添加更多物理效果（重力、风力、涡流等）
+- 💾 支持保存和加载网格状态到文件
+- 🎬 添加动画录制功能（导出为视频或图片序列）
+- ⚡ 优化物理模拟算法以支持更大规模的网格
+- 🎮 实现多点触控交互（触屏设备支持）
+
+## 项目历程
+
+### 重构说明（refactor_with_cmake 分支）
+
+本分支对项目进行了重大现代化改进：
+
+**从旧结构迁移到 CMake：**
+
+- ✅ 删除了 Visual Studio 项目文件（`EGE_Net.sln`、`EGE_Net.vcxproj`）
+- ✅ 创建了现代化的 `CMakeLists.txt` 构建配置
+- ✅ 添加了 VS Code 开发环境配置（调试、构建任务）
+- ✅ 集成了完整的 EGE 库文件（多版本、多编译器支持）
+
+**构建系统改进：**
+
+- 🔧 自动编译器识别和库选择
+- 📦 并行编译支持（加速构建过程）
+- 🌍 跨平台编译支持（Windows、Linux、macOS）
+- 🔐 UTF-8 编码和多语言支持
 
 ## 参考资料
 
-- EGE 官方文档：https://xege.org/
-- EGE GitHub 仓库：https://github.com/x-ege/xege
-- 作者博客：http://blog.wysaid.org
+- **EGE 官方文档**：<https://xege.org/>
+- **EGE GitHub 仓库**：<https://github.com/x-ege/xege>
+- **CMake 官方文档**：<https://cmake.org/documentation/>
+- **作者博客**：<http://blog.wysaid.org>
+- **C++ 标准参考**：<https://cppreference.com/>
 
 ## 许可证
 
-本项目代码可自由使用和学习，欢迎参考和借鉴。
+本项目代码可自由使用和学习，欢迎参考和借鉴。详见项目根目录的许可证文件。
 
-## 作者
+## 作者与致谢
 
-- **wysaid** - 项目作者和维护者
+**主要开发者：** wysaid
 
-## 致谢
+**感谢：**
 
-感谢 EGE 团队提供的优秀图形库，让图形编程变得简单有趣。
+- 感谢 EGE 团队提供的优秀图形库，让图形编程变得简单有趣
+- 感谢所有为这个项目提出建议和反馈的贡献者
+
+---
+
+**最后更新**：2025年12月 | **当前分支**：refactor_with_cmake | **EGE 版本**：v25.11+
