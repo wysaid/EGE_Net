@@ -130,6 +130,10 @@ g++ -o EGE_Net.exe main.cpp -IC:\EGE\include -LC:\EGE\lib -lgraphics64 -lgdi32 -
 
 这样可以避免在不同编译器环境下的中文乱码问题。
 
+**重要说明：** 源代码文件使用 UTF-8 编码，Visual Studio 项目已配置 `/utf-8` 编译选项。如果使用其他编译器，请确保：
+1. 源文件以 UTF-8 编码保存
+2. 编译时添加 UTF-8 支持选项（如 GCC/Clang 使用 `-finput-charset=UTF-8 -fexec-charset=GBK`）
+
 ## 项目结构
 
 ```
